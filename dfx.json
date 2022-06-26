@@ -1,0 +1,27 @@
+{
+  "canisters": {
+    "manager": {
+      "type": "motoko",
+      "main": "src/manager/main.mo",
+      "dependencies": ["storage"]
+    },
+    "storage": {
+      "type": "motoko",
+      "main": "src/storage/main.mo"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "--max-stable-pages=40",
+      "packtool": ""
+    }
+  },
+  "dfx": "0.10.1",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:8000",
+      "type": "ephemeral"
+    }
+  },
+  "version": 1
+}
