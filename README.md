@@ -8,13 +8,14 @@ The Smart Contracts are written in [Motoko](https://github.com/dfinity/motoko), 
 
 ## Install
 
-In order to start the project you will need to have installed [dfx](https://internetcomputer.org/docs/current/developer-docs/quickstart/hello10mins#dfx). You will also need to create a folder of ENV variables in ./contracts/<development|production>/env.mo
+In order to start the project you will need to have installed [dfx](https://internetcomputer.org/docs/current/developer-docs/quickstart/hello10mins#dfx). You will also need to configure your environment by replacing values in env.mo.
 
 #### Commands
 
 ```bash
 dfx start --clean
 dfx deploy
+dfx canister call manager createStorage
 ```
 
 ## Contributing

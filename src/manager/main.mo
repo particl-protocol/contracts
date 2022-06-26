@@ -17,13 +17,12 @@ import Types "libs/types";
 import Utils "libs/utils";
 
 actor Main {
-    private var ICP_RECEIVING_ACCOUNT: Text = "lorem-ipsum"; 
+    private var ICP_RECEIVING_ACCOUNT: Text = ENV.ICP_RECEIVING_ACCOUNT; 
     private let ONE_YEAR_IN_SECONDS: Nat = 31536000;
     private let BYTES_PER_GB: Float = 1073741824;
     private var CYCLES_COST_SECOND_GB: Nat = 127000;
     private var CYCLES_PER_XDR: Nat = 1000000000000;
-    private var MAX_STORAGE: Nat = 5905580032;
-    private let CYCLE_SHARE: Nat = 300_000_000_000;  // cycle share each bucket created
+    private let CYCLE_SHARE: Nat = 300_000_000_000;  // cycle share for each bucket created
     private let FEES = {
         var MINT: Float = 20; // in percent
         var BASE: Float = 0; // in icp
@@ -337,6 +336,17 @@ actor Main {
         let cycles = Cycles.balance();
         let memoryLeft = await storage.getMemoryLeft();
         return (cycles, memoryLeft);
+    };
+
+    public shared({caller}) func changeOwner(newOwner:Text){
+        assert(owner == caller);
+        owner := Principal.fromText(newOwner);
+    };
+
+    public shared({caller}) func createStorage(): async (Text){
+        assert(owner == caller);
+        await _createStorage();
+        Principal.toText(Principal.fromActor(storage));
     };
 
     private func _createStorage(): async() {

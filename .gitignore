@@ -1,5 +1,5 @@
 .dfx
 .vessel
 .vscode
-src/.env
 canister_ids.json
+Info.md
