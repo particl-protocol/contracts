@@ -10,7 +10,8 @@ module {
 
     public func reaction(args: ReactionArgs): ([Types.Nucleus], [Types.Nucleus]) {
         let nucleiBytes = _transformNucleisToOptBytes(args.nuclei);
-        let markersBytes = Utils.sortBytes(_validateMarkers(args.markersBytes, args.nuclei));
+        // let markersBytes = Utils.sortBytes(_validateMarkers(args.markersBytes, args.nuclei));
+        let markersBytes = args.markersBytes;
         let token0Bytes = Buffer.Buffer<Nat>(0);
         let token1Bytes = Buffer.Buffer<Nat>(0);
 
